@@ -16,7 +16,7 @@ from trainingDataset import trainingDataset
 from model_tf import Generator, Discriminator
 from tqdm import tqdm
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 class CycleGANTraining(object):
@@ -136,7 +136,7 @@ class CycleGANTraining(object):
 
             dataset = trainingDataset(datasetA=self.dataset_A,
                                       datasetB=self.dataset_B,
-                                      n_frames=128)
+                                      n_frames=64)
             train_loader = torch.utils.data.DataLoader(dataset=dataset,
                                                        batch_size=self.mini_batch_size,
                                                        shuffle=True,
@@ -308,7 +308,7 @@ class CycleGANTraining(object):
 
     def validation_for_A_dir(self):
         num_mcep = 36
-        sampling_rate = 16000
+        sampling_rate = 44100
         frame_period = 5.0
         n_frames = 128
         validation_A_dir = self.validation_A_dir
@@ -361,7 +361,7 @@ class CycleGANTraining(object):
 
     def validation_for_B_dir(self):
         num_mcep = 36
-        sampling_rate = 16000
+        sampling_rate = 44100
         frame_period = 5.0
         n_frames = 128
         validation_B_dir = self.validation_B_dir
@@ -467,14 +467,14 @@ if __name__ == '__main__':
     coded_sps_A_norm = './cache/coded_sps_A_norm.pickle'
     coded_sps_B_norm = './cache/coded_sps_B_norm.pickle'
     model_checkpoint = './model_checkpoint/'
-    resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
-    #     resume_training_at = None
+    #resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
+    resume_training_at = None
 
-    validation_A_dir_default = './data/S0913/'
-    output_A_dir_default = './converted_sound/S0913'
+    validation_A_dir_default = './data/kss/'
+    output_A_dir_default = './converted_sound/kss/'
 
-    validation_B_dir_default = './data/gaoxiaosong/'
-    output_B_dir_default = './converted_sound/gaoxiaosong/'
+    validation_B_dir_default = './data/monika/'
+    output_B_dir_default = './converted_sound/monika/'
 
     parser.add_argument('--logf0s_normalization', type=str,
                         help="Cached location for log f0s normalized", default=logf0s_normalization_default)

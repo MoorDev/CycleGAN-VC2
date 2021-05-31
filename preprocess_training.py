@@ -25,7 +25,7 @@ def load_pickle_file(fileName):
 
 def preprocess_for_training(train_A_dir, train_B_dir, cache_folder):
     num_mcep = 36
-    sampling_rate = 16000
+    sampling_rate = 44100
     frame_period = 5.0
     n_frames = 128
 
@@ -86,8 +86,8 @@ def preprocess_for_training(train_A_dir, train_B_dir, cache_folder):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Prepare data for training Cycle GAN using PyTorch')
-    train_A_dir_default = './data/S0913/'
-    train_B_dir_default = './data/gaoxiaosong/'
+    train_A_dir_default = './data/kss/'
+    train_B_dir_default = './data/monika/'
     cache_folder_default = './cache/'
 
     parser.add_argument('--train_A_dir', type=str,
