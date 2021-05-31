@@ -136,7 +136,7 @@ class CycleGANTraining(object):
 
             dataset = trainingDataset(datasetA=self.dataset_A,
                                       datasetB=self.dataset_B,
-                                      n_frames=64)
+                                      n_frames=128)
             train_loader = torch.utils.data.DataLoader(dataset=dataset,
                                                        batch_size=self.mini_batch_size,
                                                        shuffle=True,
@@ -308,7 +308,7 @@ class CycleGANTraining(object):
 
     def validation_for_A_dir(self):
         num_mcep = 36
-        sampling_rate = 44100
+        sampling_rate = 16000
         frame_period = 5.0
         n_frames = 128
         validation_A_dir = self.validation_A_dir
@@ -361,7 +361,7 @@ class CycleGANTraining(object):
 
     def validation_for_B_dir(self):
         num_mcep = 36
-        sampling_rate = 44100
+        sampling_rate = 16000
         frame_period = 5.0
         n_frames = 128
         validation_B_dir = self.validation_B_dir
