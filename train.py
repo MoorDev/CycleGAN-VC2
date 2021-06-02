@@ -136,7 +136,7 @@ class CycleGANTraining(object):
 
             dataset = trainingDataset(datasetA=self.dataset_A,
                                       datasetB=self.dataset_B,
-                                      n_frames=128)
+                                      n_frames=64)
             train_loader = torch.utils.data.DataLoader(dataset=dataset,
                                                        batch_size=self.mini_batch_size,
                                                        shuffle=True,
@@ -254,7 +254,8 @@ class CycleGANTraining(object):
 
                 if (i + 1) % 2 == 0:
                     pbar.set_description(
-                        "Iter:{} Generator Loss:{:.4f} Discrimator Loss:{:.4f} GA2B:{:.4f} GB2A:{:.4f} G_id:{:.4f} G_cyc:{:.4f} D_A:{:.4f} D_B:{:.4f}".format(
+                        "Epoch:{} Iter:{} Generator Loss:{:.4f} Discrimator Loss:{:.4f} GA2B:{:.4f} GB2A:{:.4f} G_id:{:.4f} G_cyc:{:.4f} D_A:{:.4f} D_B:{:.4f}".format(
+                            epoch,
                             num_iterations,
                             generator_loss.item(),
                             # loss['generator_loss'],
