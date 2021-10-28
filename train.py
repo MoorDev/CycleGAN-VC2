@@ -16,7 +16,7 @@ from trainingDataset import trainingDataset
 from model_tf import Generator, Discriminator
 from tqdm import tqdm
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 
 class CycleGANTraining(object):
@@ -136,7 +136,7 @@ class CycleGANTraining(object):
 
             dataset = trainingDataset(datasetA=self.dataset_A,
                                       datasetB=self.dataset_B,
-                                      n_frames=64)
+                                      n_frames=128)
             train_loader = torch.utils.data.DataLoader(dataset=dataset,
                                                        batch_size=self.mini_batch_size,
                                                        shuffle=True,
@@ -254,8 +254,7 @@ class CycleGANTraining(object):
 
                 if (i + 1) % 2 == 0:
                     pbar.set_description(
-                        "Epoch:{} Iter:{} Generator Loss:{:.4f} Discrimator Loss:{:.4f} GA2B:{:.4f} GB2A:{:.4f} G_id:{:.4f} G_cyc:{:.4f} D_A:{:.4f} D_B:{:.4f}".format(
-                            epoch,
+                        "Iter:{} Generator Loss:{:.4f} Discrimator Loss:{:.4f} GA2B:{:.4f} GB2A:{:.4f} G_id:{:.4f} G_cyc:{:.4f} D_A:{:.4f} D_B:{:.4f}".format(
                             num_iterations,
                             generator_loss.item(),
                             # loss['generator_loss'],
@@ -468,14 +467,14 @@ if __name__ == '__main__':
     coded_sps_A_norm = './cache/coded_sps_A_norm.pickle'
     coded_sps_B_norm = './cache/coded_sps_B_norm.pickle'
     model_checkpoint = './model_checkpoint/'
-    #resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
-    resume_training_at = None
+    resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
+    #     resume_training_at = None
 
-    validation_A_dir_default = './data/kss/'
-    output_A_dir_default = './converted_sound/kss/'
+    validation_A_dir_default = './data/ririn/'
+    output_A_dir_default = './converted_sound/ririn'
 
-    validation_B_dir_default = './data/monika/'
-    output_B_dir_default = './converted_sound/monika/'
+    validation_B_dir_default = './data/kss/'
+    output_B_dir_default = './converted_sound/kss/'
 
     parser.add_argument('--logf0s_normalization', type=str,
                         help="Cached location for log f0s normalized", default=logf0s_normalization_default)

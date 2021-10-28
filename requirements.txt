@@ -1,4 +1,6 @@
 torch
-librosa<0.8.0
+librosa
 tqdm
 pyworld
+sndfile
+matplotlib
